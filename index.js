@@ -56,6 +56,10 @@ let transporter = nodemailer.createTransport({
   },
 });
 
+app.post("/health", async (req, res) => {
+  res.json({ message: "Server is running", status: 200 });
+});
+
 // ------------------- PAYMENT APIS ------------------- //
 // 1️⃣ Create Order API
 app.post("/create-order", async (req, res) => {
@@ -1051,11 +1055,11 @@ app.post("/extra-product-list", async (req, res) => {
                 </thead>
                 <tbody>
   ${Object.entries(productTable)
-        .map(
-          ([name, qty]) =>
-            `<tr><td style="color: ##fff;">${name}</td><td style="color: ##fff;">${qty}</td></tr>`,
-        )
-        .join("")}
+    .map(
+      ([name, qty]) =>
+        `<tr><td style="color: ##fff;">${name}</td><td style="color: ##fff;">${qty}</td></tr>`,
+    )
+    .join("")}
 </tbody>
 
               </table>
